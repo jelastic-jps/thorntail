@@ -1,0 +1,66 @@
+---
+type: install
+version: 1.4
+id: vertx-fat-jar
+name: Thorntail (WildFly Swarm) Fat Jar Microservice
+baseUrl: https://raw.githubusercontent.com/jelastic-jps/thorntail/master
+logo: /images/wildfly-swarm-logo.png
+homepage: https://github.com/jelastic-jps/thorntail/tree/master/microservice-fat-jar
+description: /text/description-fat-jar.md 
+
+globals:
+  projectName: myapp
+  buildDir: /var/lib/jelastic/PROJECTS/${globals.projectName}
+  
+settings:
+  fields:
+    - type: string
+      caption: Git Repo
+      name: gitUrl
+      default: https://github.com/siruslan/java-packaging-demo.git
+      required: true
+      
+    - type: string
+      caption: Work Directory
+      name: workDir
+      default: wildfly-swarm-fat-thin
+ 
+ssl: true  
+   
+nodes:
+- count: 1
+  cloudlets: 16
+  nodeGroup: build
+  nodeType: maven
+  
+- count: 1
+  cloudlets: 8
+  nodeGroup: cp
+  nodeType: javaengine
+  restartDelay: 15
+      
+onInstall:
+- addBuildProject
+- buildDeployProject
+  
+actions:  
+  addBuildProject:
+    api: env.deployment.AddBuildProject
+    name: ${globals.projectName}
+    nodeId: ${nodes.build.first.id}
+    repo: ${settings.gitUrl}
+    settings:
+      workDir: ${settings.workDir}
+    deployment:
+      envName: ${env.envName}
+      nodeGroup: cp      
+    hooks: ${globals.hooks:} 
+  
+  buildDeployProject:
+    api: env.deployment.BuildDeployProject
+    nodeId: ${nodes.build.first.id}
+    project: ${globals.projectName}
+    skipUpload: true
+      
+success: /text/success-fat-jar.md
+startPage: api/greeting      
