@@ -1,7 +1,7 @@
 ---
 type: install
 version: 1.4
-id: vertx-fat-jar
+id: thorntail-fat-jar
 name: Thorntail (WildFly Swarm) Fat Jar Microservice
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/thorntail/master
 logo: /images/wildfly-swarm-logo.png
