@@ -1,0 +1,66 @@
+---
+type: install
+version: 1.4
+id: thorntail-thin-war
+name: Thorntail (WildFly Swarm) Thin War Microservice
+baseUrl: https://raw.githubusercontent.com/jelastic-jps/thorntail/master
+logo: /images/wildfly-swarm-logo.png
+homepage: https://github.com/jelastic-jps/thorntail/tree/master/microservice-thin-war
+description: /text/description-thin-war.md 
+
+globals:
+  projectName: myapp
+
+settings:
+  fields:
+    - type: string
+      caption: Git Repo
+      name: gitUrl
+      default: https://github.com/siruslan/java-packaging-demo.git
+      required: true
+      
+    - type: string
+      caption: Work Directory
+      name: workDir
+      default: wildfly-swarm-fat-thin
+ 
+ssl: true  
+
+nodes:
+- count: 1
+  cloudlets: 16
+  nodeGroup: build
+  nodeType: maven
+
+- count: 1
+  cloudlets: 16
+  nodeType: wildfly-auto-cluster
+  nodeGroup: cp
+
+onInstall:
+  - addBuildProject        
+  - buildDeployProject
+
+onAfterBuildProject[project:${globals.projectName}]:
+  cmd[build]: rm -rf /var/lib/jelastic/PROJECTS/${globals.projectName}/${settings.workDir}/target/weight-1.0-swarm.jar
+
+actions:
+  addBuildProject:
+    - api: env.deployment.AddBuildProject
+      name: ${globals.projectName}
+      nodeId: ${nodes.build.first.id}
+      repo: ${settings.gitUrl}
+      settings:
+        workDir: ${settings.workDir}
+      deployment:
+        envName: ${env.envName}
+        nodeGroup: cp
+
+  buildDeployProject:
+    api: env.deployment.BuildDeployProject
+    nodeId: ${nodes.build.first.id}
+    project: ${globals.projectName}
+    skipUpload: true
+
+success: /text/success-thin-war.md
+startPage: api/greeting      
