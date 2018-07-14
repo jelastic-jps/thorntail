@@ -31,6 +31,8 @@ nodes:
   cloudlets: 16
   nodeGroup: build
   nodeType: maven
+  env:
+    MAVEN_DEPLOY_ARTIFACT: weight-1.0.war
 
 - count: 1
   cloudlets: 16
@@ -40,9 +42,6 @@ nodes:
 onInstall:
   - addBuildProject        
   - buildDeployProject
-
-onAfterBuildProject[project:${globals.projectName}]:
-  cmd[build]: rm -rf /var/lib/jelastic/PROJECTS/${globals.projectName}/${settings.workDir}/target/weight-1.0-swarm.jar
 
 actions:
   addBuildProject:
