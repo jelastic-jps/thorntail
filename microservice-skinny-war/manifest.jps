@@ -1,0 +1,94 @@
+---
+type: install
+version: 1.4
+id: thorntail-skinny-war
+name: Thorntail (WildFly Swarm) Skinny War Microservice
+baseUrl: https://raw.githubusercontent.com/jelastic-jps/thorntail/master
+logo: /images/wildfly-swarm-logo.png
+homepage: https://github.com/jelastic-jps/thorntail/tree/master/microservice-skinny-war
+description: /text/description-skinny-war.md 
+
+globals:
+  projectName: myapp
+  deployDir: /deployments
+
+settings:
+  fields:
+    - type: string
+      caption: Git Repo
+      name: gitUrl
+      default: https://github.com/siruslan/java-packaging-demo.git
+      required: true
+      
+    - type: string
+      caption: Work Directory
+      name: workDir
+      default: wildfly-swarm-skinny
+ 
+ssl: true  
+
+nodes:
+- count: 1
+  cloudlets: 16
+  nodeGroup: build
+  nodeType: maven
+
+- count: 1
+  cloudlets: 8
+  nodeGroup: cp
+  nodeType: javaengine
+  restartDelay: 15
+  volumes:
+  - ${globals.deployDir}
+  volumeMounts:
+    ${globals.deployDir}:
+      sourcePath: ${globals.deployDir}
+      sourceNodeGroup: build
+      readOnly: true
+  env:
+    JELASTIC_EXPOSE: 8080
+    JAVA_ARGS: ${globals.deployDir}/app.war
+        
+onInstall:
+  - addBuildProject
+  - buildProject
+
+onAfterBuildProject[project:${globals.projectName}]: 
+  - cmd[cp]: |-
+      rm -rf ${STACK_PATH}/APP/*
+      cp ${globals.deployDir}/ms.jar ${STACK_PATH}/APP
+  - restartContainers[cp]
+
+actions:  
+  addBuildProject:
+    ###  Preparing WildFly Swarm Fraction http://docs.wildfly-swarm.io/2017.11.0/#fractions
+    - api: env.deployment.AddBuildProject
+      name: hollow
+      nodeId: ${nodes.build.first.id}
+      repo: ${settings.gitUrl}
+      settings:
+        workDir: joda-fraction 
+
+    - api: env.deployment.BuildProject
+      nodeId: ${nodes.build.first.id}
+      project: hollow
+      skipUpload: true 
+    ###  
+
+    - api: env.deployment.AddBuildProject
+      name: ${globals.projectName}
+      nodeId: ${nodes.build.first.id}
+      repo: ${settings.gitUrl}
+      settings:
+        workDir: ${settings.workDir}
+      hooks: | 
+          {"postBuild":"cd /var/lib/jelastic/PROJECTS/${globals.projectName}/${settings.workDir}/target; cp $(ls | grep *.jar | head -n 1) ${globals.deployDir}/ms.jar 2>/dev/null || :; cp $(ls | grep *.war | head -n 1) ${globals.deployDir}/app.war 2>/dev/null || :; cp -R thin ${globals.deployDir}/ 2>/dev/null || :"}
+
+  buildProject:
+    api: env.deployment.BuildProject
+    nodeId: ${nodes.build.first.id}
+    project: ${globals.projectName}
+    skipUpload: true   
+
+success: /text/success-skinny-war.md
+startPage: api/greeting      
