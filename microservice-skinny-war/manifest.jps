@@ -1,12 +1,12 @@
 ---
 type: install
 version: 1.4
-id: thorntail-skinny-war
-name: Thorntail (WildFly Swarm) Skinny War Microservice
+id: thorntail-skinny-jar
+name: Thorntail (WildFly Swarm) Skinny Jar Microservice
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/thorntail/master
 logo: /images/wildfly-swarm-logo.png
-homepage: https://github.com/jelastic-jps/thorntail/tree/master/microservice-skinny-war
-description: /text/description-skinny-war.md 
+homepage: https://github.com/jelastic-jps/thorntail/tree/master/microservice-skinny-jar
+description: /text/description-skinny-jar.md 
 
 globals:
   projectName: myapp
@@ -90,5 +90,5 @@ actions:
     project: ${globals.projectName}
     skipUpload: true   
 
-success: /text/success-skinny-war.md
+success: /text/success-skinny-jar.md
 startPage: api/greeting      
