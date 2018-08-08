@@ -8,6 +8,11 @@ logo: /images/wildfly-swarm-logo.png
 homepage: https://github.com/jelastic-jps/thorntail/tree/master/microservice-skinny-jar
 description: /text/description-skinny-jar.md 
 
+categories:
+  - apps/dev-and-admin-tools
+  - apps/microservices
+  - apps/others
+
 globals:
   projectName: myapp
   deployDir: /deployments
