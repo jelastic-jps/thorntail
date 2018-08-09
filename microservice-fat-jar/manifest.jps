@@ -2,7 +2,7 @@
 type: install
 version: 1.4
 id: thorntail-fat-jar
-name: Thorntail (WildFly Swarm) Fat Jar Microservice
+name: Thorntail Fat Jar Builder
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/thorntail/master
 logo: /images/wildfly-swarm-logo.png
 homepage: https://github.com/jelastic-jps/thorntail/tree/master/microservice-fat-jar
