@@ -6,7 +6,9 @@ name: Thorntail (WildFly Swarm) Skinny Jar Microservice
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/thorntail/master
 logo: /images/wildfly-swarm-logo.png
 homepage: https://github.com/jelastic-jps/thorntail/tree/master/microservice-skinny-jar
-description: /text/description-skinny-jar.md 
+description: 
+  text: /text/description-skinny-jar.md 
+  short: Example of Microservice based on Thorntail (WildFly Swarm) Skinny Jar
 
 categories:
   - apps/dev-and-admin-tools
