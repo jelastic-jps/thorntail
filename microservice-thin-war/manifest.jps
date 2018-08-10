@@ -2,7 +2,7 @@
 type: install
 version: 1.4
 id: thorntail-thin-war
-name: Thorntail (WildFly Swarm) Thin War Microservice
+name: Thorntail (WildFly Swarm) Thin War Builder
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/thorntail/master
 logo: /images/wildfly-swarm-logo.png
 homepage: https://github.com/jelastic-jps/thorntail/tree/master/microservice-thin-war

@@ -2,7 +2,7 @@
 type: install
 version: 1.4
 id: thorntail-skinny-jar
-name: Thorntail (WildFly Swarm) Skinny Jar Microservice
+name: Thorntail (WildFly Swarm) Skinny Jar Builder
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/thorntail/master
 logo: /images/wildfly-swarm-logo.png
 homepage: https://github.com/jelastic-jps/thorntail/tree/master/microservice-skinny-jar
