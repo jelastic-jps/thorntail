@@ -6,7 +6,9 @@ name: Thorntail (WildFly Swarm) Thin War Microservice
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/thorntail/master
 logo: /images/wildfly-swarm-logo.png
 homepage: https://github.com/jelastic-jps/thorntail/tree/master/microservice-thin-war
-description: /text/description-thin-war.md 
+description: 
+  text: /text/description-thin-war.md
+  short: Example of Microservice based on Thorntail (WildFly Swarm) Thin War
 
 categories:
   - apps/dev-and-admin-tools
