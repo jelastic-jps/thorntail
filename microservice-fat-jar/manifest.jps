@@ -6,7 +6,11 @@ name: Thorntail Fat Jar Builder
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/thorntail/master
 logo: /images/wildfly-swarm-logo.png
 homepage: https://github.com/jelastic-jps/thorntail/tree/master/microservice-fat-jar
-description: /text/description-fat-jar.md 
+
+description:
+  text: /text/description-fat-jar.md
+  short: Example of Microservice based on Thorntail (WildFly Swarm) Fat Jar
+  
 categories:
   - apps/dev-and-admin-tools
   - apps/microservices
