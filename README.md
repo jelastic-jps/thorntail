@@ -14,7 +14,7 @@ Build and deploy your microservices automatically as:
  
 - [Thin War](https://github.com/vlobzakov/thorntail/blob/master) – Compiled and packaged application code/business logic together with 3rd party libraries which it depends on. It comes with drivers, frameworks, and utilities, etc. that are not the part of the standard *Java SE* or *Java EE* runtimes.
 
-<p align="left">
+<p align="center">
 <img src="images/scheme.png" width="500">
 </p>
 
