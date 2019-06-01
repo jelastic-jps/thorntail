@@ -2,7 +2,7 @@
 type: install
 version: 1.4
 id: thorntail-skinny-jar
-name: Thorntail (WildFly Swarm) Skinny Jar Builder
+name: Thorntail Skinny Jar Builder
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/thorntail/master
 logo: /images/wildfly-swarm-logo.png
 homepage: https://github.com/jelastic-jps/thorntail/tree/master/microservice-skinny-jar
@@ -38,11 +38,13 @@ nodes:
   cloudlets: 16
   nodeGroup: build
   nodeType: maven
+  tag: 3.5.4-openjdk-1.8.0_181
 
 - count: 1
   cloudlets: 8
   nodeGroup: cp
   nodeType: javaengine
+  tag: openjdk-1.8.0_181
   restartDelay: 15
   volumes:
   - ${globals.deployDir}
