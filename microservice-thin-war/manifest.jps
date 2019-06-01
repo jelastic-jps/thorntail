@@ -2,7 +2,7 @@
 type: install
 version: 1.4
 id: thorntail-thin-war
-name: Thorntail (WildFly Swarm) Thin War Builder
+name: Thorntail Thin War Builder
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/thorntail/master
 logo: /images/wildfly-swarm-logo.png
 homepage: https://github.com/jelastic-jps/thorntail/tree/master/microservice-thin-war
@@ -37,12 +37,13 @@ nodes:
   cloudlets: 16
   nodeGroup: build
   nodeType: maven
+  tag: 3.5.4-openjdk-11.0.1 
   env:
     MAVEN_DEPLOY_ARTIFACT: weight-1.0.war
 
 - count: 1
   cloudlets: 16
-  nodeType: wildfly-auto-cluster
+  nodeType: wildfly
   nodeGroup: cp
 
 onInstall:
