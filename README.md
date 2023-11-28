@@ -3,6 +3,7 @@
 </p>
 
 # Thorntail (WildFly Swarm) Framework
+## The project is deprecated due to [Thorntail's end of life](https://thorntail.io/).
 
 The [Thorntail](https://docs.thorntail.io/) is a framework, developed to create small standalone microservice-based applications in MicroProfile compatible way. Being based on the popular *WildFly Java* application server, the *Thorntail* is capable of producing so-called “just enough app-server” to support each component of your system.
 
